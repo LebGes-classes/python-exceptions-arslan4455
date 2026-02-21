@@ -308,3 +308,6 @@ def run_ui():
 
         except ValueError:
             print("Ошибка: введены некорректные данные (тип числа).")
+
+if __name__ == "__main__":
+    run_ui()
