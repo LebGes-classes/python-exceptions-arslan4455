@@ -1,98 +1,238 @@
 class ItemCard:
     """
-    Класс, представляющий карточку товара.
-    """
-    def __init__(self, article_number: int, name: str, quantity: int, location: str, 
-                 supplier: str, manufacturer: str, price: float, category: str, 
-                 subcategory: str, status: str = "в наличии"):
-        self.__int_article_number = article_number
-        self.__str_name = name
-        self.__int_quantity = quantity
-        self.__str_location = location
-        self.__str_supplier = supplier
-        self.__str_manufacturer = manufacturer
-        self.__float_price = price
-        self.__str_category = category
-        self.__str_subcategory = subcategory
-        self.__str_status = status
+    Класс, представляющий карточку товара на складе.
 
-    # --- ГЕТТЕРЫ ---
+    Хранит информацию о товаре:
+    артикул, название, количество, локацию, поставщика,
+    производителя, цену, категорию, подкатегорию и статус.
+    """
+
+    def __init__(self, article_number: int, name: str, quantity: int,
+                 location: str, supplier: str, manufacturer: str,
+                 price: float, category: str, subcategory: str,
+                 status: str = "в наличии"):
+        """
+        Инициализирует новый объект карточки товара.
+        """
+        self.__article_number = article_number
+        self.__name = name
+        self.__quantity = quantity
+        self.__location = location
+        self.__supplier = supplier
+        self.__manufacturer = manufacturer
+        self.__price = price
+        self.__category = category
+        self.__subcategory = subcategory
+        self.__status = status
+
+    # -------- ГЕТТЕРЫ --------
+
     def get_article_number(self) -> int:
-        """Returns: int: Артикул."""
-        return self.__int_article_number
+        """Возвращает артикул товара."""
+        return self.__article_number
 
     def get_name(self) -> str:
-        """Returns: str: Имя."""
-        return self.__str_name
+        """Возвращает название товара."""
+        return self.__name
 
     def get_quantity(self) -> int:
-        """Returns: int: Кол-во."""
-        return self.__int_quantity
+        """Возвращает количество товара."""
+        return self.__quantity
 
     def get_price(self) -> float:
-        """Returns: float: Цена."""
-        return self.__float_price
+        """Возвращает цену товара."""
+        return self.__price
 
     def get_status(self) -> str:
-        """Returns: str: Статус."""
-        return self.__str_status
+        """Возвращает статус товара."""
+        return self.__status
 
-    # --- СЕТТЕРЫ ---
+    def get_location(self) -> str:
+        """Возвращает местоположение товара."""
+        return self.__location
+
+    def get_supplier(self) -> str:
+        """Возвращает поставщика товара."""
+        return self.__supplier
+
+    def get_manufacturer(self) -> str:
+        """Возвращает производителя товара."""
+        return self.__manufacturer
+
+    def get_category(self) -> str:
+        """Возвращает категорию товара."""
+        return self.__category
+
+    def get_subcategory(self) -> str:
+        """Возвращает подкатегорию товара."""
+        return self.__subcategory
+
+    # -------- СЕТТЕРЫ --------
+
+    def set_article_number(self, article_number: int):
+        """Устанавливает новый артикул."""
+        try:
+            if article_number <= 0:
+                raise ValueError("Артикул должен быть положительным.")
+            self.__article_number = article_number
+            print("Артикул обновлён.")
+        except ValueError as e:
+            print("Ошибка:", e)
+
+
     def set_name(self, name: str):
-        """Args: name (str): Новое имя."""
+        """Устанавливает новое название."""
         try:
             if not name.strip():
-                raise ValueError("Ошибка: Имя не может быть пустым.")
-            self.__str_name = name
-            print("Успешно обновлено.")
+                raise ValueError("Название не может быть пустым.")
+            self.__name = name
+            print("Название обновлено.")
         except ValueError as e:
-            print(e)
+            print("Ошибка:", e)
+
 
     def set_quantity(self, quantity: int):
-        """Args: quantity (int): Новое количество."""
+        """Устанавливает новое количество."""
         try:
             if quantity < 0:
-                raise ValueError("Ошибка: Количество не может быть отрицательным.")
-            self.__int_quantity = quantity
+                raise ValueError("Количество не может быть отрицательным.")
+            self.__quantity = quantity
             print("Количество обновлено.")
         except ValueError as e:
-            print(e)
+            print("Ошибка:", e)
+
 
     def set_price(self, price: float):
-        """Args: price (float): Новая цена."""
+        """Устанавливает новую цену."""
         try:
             if price <= 0:
-                raise ValueError("Ошибка: Цена должна быть больше 0.")
-            self.__float_price = price
+                raise ValueError("Цена должна быть больше 0.")
+            self.__price = price
             print("Цена обновлена.")
         except ValueError as e:
-            print(e)
+            print("Ошибка:", e)
+
+
+    def set_location(self, location: str):
+        """Устанавливает новую локацию."""
+        try:
+            if not location.strip():
+                raise ValueError("Локация не может быть пустой.")
+            self.__location = location
+            print("Локация обновлена.")
+        except ValueError as e:
+            print("Ошибка:", e)
+
+
+    def set_supplier(self, supplier: str):
+        """Устанавливает нового поставщика."""
+        try:
+            if not supplier.strip():
+                raise ValueError("Поставщик не может быть пустым.")
+            self.__supplier = supplier
+            print("Поставщик обновлён.")
+        except ValueError as e:
+            print("Ошибка:", e)
+
+
+    def set_manufacturer(self, manufacturer: str):
+        """Устанавливает нового производителя."""
+        try:
+            if not manufacturer.strip():
+                raise ValueError("Производитель не может быть пустым.")
+            self.__manufacturer = manufacturer
+            print("Производитель обновлён.")
+        except ValueError as e:
+            print("Ошибка:", e)
+
+
+    def set_category(self, category: str):
+        """Устанавливает новую категорию."""
+        try:
+            if not category.strip():
+                raise ValueError("Категория не может быть пустой.")
+            self.__category = category
+            print("Категория обновлена.")
+        except ValueError as e:
+            print("Ошибка:", e)
+
+
+    def set_subcategory(self, subcategory: str):
+        """Устанавливает новую подкатегорию."""
+        try:
+            if not subcategory.strip():
+                raise ValueError("Подкатегория не может быть пустой.")
+            self.__subcategory = subcategory
+            print("Подкатегория обновлена.")
+        except ValueError as e:
+            print("Ошибка:", e)
+
+
+    def set_status(self, status: str):
+        """Устанавливает новый статус."""
+        try:
+            if not status.strip():
+                raise ValueError("Статус не может быть пустым.")
+            self.__status = status
+            print("Статус обновлён.")
+        except ValueError as e:
+            print("Ошибка:", e)
+
 
     def write_off(self):
-        """Списание товара согласно схеме."""
-        self.__int_quantity = 0
-        self.__str_status = "списано"
-        print("Товар успешно списан.")
+        """
+        Списывает товар со склада.
+        Количество становится 0, статус — 'списано'.
+        """
+        try:
+            if self.__status == "списано":
+                raise ValueError("Товар уже списан.")
+
+            self.__quantity = 0
+            self.__status = "списано"
+            print("Товар успешно списан.")
+
+        except ValueError as e:
+            print("Ошибка:", e)
 
     def __str__(self):
-        return (f"\n--- КАРТОЧКА ТОВАРА ---\n"
-                f"Артикул: {self.__int_article_number}\n"
-                f"Наименование: {self.__str_name}\n"
-                f"Количество: {self.__int_quantity}\n"
-                f"Цена: {self.__float_price}\n"
-                f"Статус: {self.__str_status}\n"
-                f"-----------------------")
+        """Возвращает строковое представление товара."""
+        return (
+            f"\n--- КАРТОЧКА ТОВАРА ---\n"
+            f"Артикул: {self.__article_number}\n"
+            f"Наименование: {self.__name}\n"
+            f"Количество: {self.__quantity}\n"
+            f"Цена: {self.__price} руб.\n"
+            f"Статус: {self.__status}\n"
+            f"Локация: {self.__location}\n"
+            f"Поставщик: {self.__supplier}\n"
+            f"Производитель: {self.__manufacturer}\n"
+            f"Категория: {self.__category}\n"
+            f"Подкатегория: {self.__subcategory}\n"
+            f"-----------------------"
+        )
 
 
 def run_ui():
-    "Выводит интерфейс для взаимодействия с объектами."
+    """Запускает консольный интерфейс складской системы."""
+
     print("Добро пожаловать в систему складского учета!")
-    
-    item = ItemCard(1001, "Ноутбук", 5, "Секция 1", "Asus Store", "Asus", 75000.0, "Техника", "Laptops")
+
+    item = ItemCard(
+        1001,
+        "Ноутбук",
+        5,
+        "Секция 1",
+        "Asus Store",
+        "Asus",
+        75000.0,
+        "Техника",
+        "Ноутбуки"
+    )
 
     while True:
         print("\nМЕНЮ УПРАВЛЕНИЯ:")
-        print("1. Показать информацию о товаре")
+        print("1. Показать информацию")
         print("2. Изменить название")
         print("3. Изменить количество")
         print("4. Изменить цену")
@@ -101,42 +241,39 @@ def run_ui():
 
         choice = input("\nВыберите действие: ")
 
-        if choice == "1":
-            print(item)
-        
-        elif choice == "2":
-            new_name = input("Введите новое название: ")
-            item.set_name(new_name)
-        
-        elif choice == "3":
-            try:
+        try:
+            if choice == "1":
+                print(item)
+
+            elif choice == "2":
+                new_name = input("Введите новое название: ")
+                item.set_name(new_name)
+
+            elif choice == "3":
                 new_qty = int(input("Введите новое количество: "))
                 item.set_quantity(new_qty)
-            except ValueError:
-                print("Ошибка: Введите целое число для количества.")
-        
-        elif choice == "4":
-            try:
+
+            elif choice == "4":
                 new_price = float(input("Введите новую цену: "))
                 item.set_price(new_price)
-            except ValueError:
-                print("Ошибка: Введите число для цены.")
-        
-        elif choice == "5":
-            try:
-                confirm = input("Вы уверены, что хотите списать товар? (y/n): ")
-                if confirm == 'y':
-                    item.write_off()
-            except ValueError:
-                print('Неверный ввод, попробуйте снова.')
 
-        
-        elif choice == "0":
-            print("Завершение работы...")
-            break
-        
-        else:
-            print("Неверный ввод, попробуйте снова.")
+            elif choice == "5":
+                confirm = input("Вы уверены? (y/n): ")
+                if confirm.lower() == "y":
+                    item.write_off()
+                    print("Товар списан.")
+
+            elif choice == "0":
+                print("Завершение работы...")
+                break
+
+            else:
+                print("Неверный ввод.")
+
+        except ValueError as e:
+            print("Ошибка:", e)
+
 
 if __name__ == "__main__":
     run_ui()
+    
