@@ -214,7 +214,7 @@ class ItemCard:
 
 
 def run_ui():
-    """Запускает консольный интерфейс складской системы."""
+    """Запускает консольный интерфейс управления карточкой товара."""
 
     print("Добро пожаловать в систему складского учета!")
 
@@ -230,50 +230,81 @@ def run_ui():
         "Ноутбуки"
     )
 
-    while True:
-        print("\nМЕНЮ УПРАВЛЕНИЯ:")
-        print("1. Показать информацию")
-        print("2. Изменить название")
-        print("3. Изменить количество")
-        print("4. Изменить цену")
-        print("5. Списать товар")
+    is_running = True
+    while is_running:
+        print("\n====== МЕНЮ УПРАВЛЕНИЯ ======")
+        print("1. Показать информацию о товаре")
+        print("2. Изменить артикул")
+        print("3. Изменить название")
+        print("4. Изменить количество")
+        print("5. Изменить цену")
+        print("6. Изменить локацию")
+        print("7. Изменить поставщика")
+        print("8. Изменить производителя")
+        print("9. Изменить категорию")
+        print("10. Изменить подкатегорию")
+        print("11. Изменить статус")
+        print("12. Списать товар")
         print("0. Выход")
 
         choice = input("\nВыберите действие: ")
 
+        
         try:
             if choice == "1":
                 print(item)
 
             elif choice == "2":
+                new_article = int(input("Введите новый артикул: "))
+                item.set_article_number(new_article)
+
+            elif choice == "3":
                 new_name = input("Введите новое название: ")
                 item.set_name(new_name)
 
-            elif choice == "3":
+            elif choice == "4":
                 new_qty = int(input("Введите новое количество: "))
                 item.set_quantity(new_qty)
 
-            elif choice == "4":
+            elif choice == "5":
                 new_price = float(input("Введите новую цену: "))
                 item.set_price(new_price)
 
-            elif choice == "5":
-                confirm = input("Вы уверены? (y/n): ")
+            elif choice == "6":
+                new_location = input("Введите новую локацию: ")
+                item.set_location(new_location)
+
+            elif choice == "7":
+                new_supplier = input("Введите нового поставщика: ")
+                item.set_supplier(new_supplier)
+
+            elif choice == "8":
+                new_manufacturer = input("Введите нового производителя: ")
+                item.set_manufacturer(new_manufacturer)
+
+            elif choice == "9":
+                new_category = input("Введите новую категорию: ")
+                item.set_category(new_category)
+
+            elif choice == "10":
+                new_subcategory = input("Введите новую подкатегорию: ")
+                item.set_subcategory(new_subcategory)
+
+            elif choice == "11":
+                new_status = input("Введите новый статус: ")
+                item.set_status(new_status)
+
+            elif choice == "12":
+                confirm = input("Вы уверены, что хотите списать товар? (y/n): ")
                 if confirm.lower() == "y":
                     item.write_off()
-                    print("Товар списан.")
 
             elif choice == "0":
                 print("Завершение работы...")
-                break
+                is_running = False
 
             else:
-                print("Неверный ввод.")
+                print("Неверный ввод. Попробуйте снова.")
 
-        except ValueError as e:
-            print("Ошибка:", e)
-
-
-if __name__ == "__main__":
-    run_ui()
-    
+        except ValueError:
+            print("Ошибка: введены некорректные данные (тип числа).")
